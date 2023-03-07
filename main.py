@@ -4,9 +4,9 @@ import asyncio
 import os
 
 TOKEN = os.environ['TOKEN']
-
 intents = discord.Intents.default()
-bot = commands.Bot(command_prefix='!', intents=intents)
+intents.message_content = True
+bot = commands.Bot(command_prefix='$', intents=intents)
 
 async def load_extensions():
     """
@@ -23,6 +23,7 @@ async def main():
     """
     async with bot:
         await load_extensions()
+        print('Running Bot')
         await bot.start(TOKEN)
 
 asyncio.run(main())
